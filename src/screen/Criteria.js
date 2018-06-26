@@ -19,6 +19,27 @@ class Criteria extends React.Component {
 
   addCriteria() {
     const { criteria, name, bobot } = this.state;
+    
+    if (name === '') {
+      window.alert('Masukan nama kriteria');
+      return;
+    }
+
+    if (bobot === '') {
+      window.alert('Masukan bobot kriteria');
+      return;
+    }
+
+    if (isNaN(Number(bobot))) {
+      window.alert('Invalid input');
+      return;
+    }
+
+    if (Number(bobot) < 1 || Number(bobot) > 5) {
+      window.alert('Bobot harus antara 1 - 5');
+      return;
+    }
+    
     criteria.push({
       name,
       bobot,
@@ -112,6 +133,8 @@ class Criteria extends React.Component {
                     <div className="form-group">
                       <label>Bobot</label>
                       <input
+                        min="1"
+                        max="5"
                         name="bobot"
                         value={bobot}
                         type="number"

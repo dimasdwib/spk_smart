@@ -27,18 +27,17 @@ class Utility extends React.Component {
     let cMax = 0;
     alternative.forEach((a) => {
       a.parameterVal.forEach(p => {
-        console.log('param', p);
         cMax = Math.max(p, cMax);
         if (cMin === 0 || p <= cMin) {
           cMin = p;
         }
-        console.log(cMin, cMax);
       });
     });
 
     const skorVal = [];
     const utilityVal = [];
     let selectedAlt = 0;
+    let higestScore = 0;
     alternative.forEach((a, i) => {
       
       // utility Value
@@ -47,7 +46,7 @@ class Utility extends React.Component {
       criteria.forEach((c, i2) => {
         // count utility
         const u = (a.parameterVal[i2] - cMin) / (cMax - cMin);
-        console.log(a.name, c.name, a.parameterVal[i2], cMin, cMax, u);
+        // console.log(a.name, c.name, a.parameterVal[i2], cMin, cMax, u);
         utilityVal[i].push(u);
 
         // count skor
@@ -57,10 +56,10 @@ class Utility extends React.Component {
       });
 
       // selected alternative - higest score
-      if (skorVal[0] && skorTotal >= skorVal[i-1]) {
+      if (skorTotal >= higestScore) {
+        higestScore = skorTotal;
         selectedAlt = i;
       }
-      console.log(selectedAlt, skorTotal, skorVal);
       skorVal.push(skorTotal);
     });
 
@@ -83,7 +82,7 @@ class Utility extends React.Component {
     });
 
     return (
-      <table className="table table-sm table-hover table-striped table-bordered">
+      <table className="table table-sm table-hover table-bordered">
         <thead>
           <tr>
             <th>Alternatif</th>

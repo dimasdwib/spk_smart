@@ -30,6 +30,7 @@ class MainPage extends React.Component {
       case 'alternative':
         return <Alternative
                 criteria={criteria}
+                alternative={alternative}
                 setPage={this.setPage}
                 setAlternative={this.setAlternative}
               />
@@ -68,7 +69,8 @@ class MainPage extends React.Component {
     return (
       <div style={{ marginBottom: 25, marginTop: 20 }}>
         <h3> Sistem Pendukung Keputusan dengan metode SMART</h3>
-        <small>Untuk memenuhi tugas matakuliah Sistem Pendukung Keputusan </small>
+        <small>Dimas Dwi Budiarjo - G.131.15.0065 </small> <br />
+        <small>Mochammad Dimasrur - G.141.16.0001 </small>
         <hr />
         <div className="card">
           <div className="card-body">

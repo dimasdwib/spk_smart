@@ -22,6 +22,11 @@ class Alternative extends React.Component {
   addAlternative() {
     const { criteriaVal, alternative, name } = this.state;
 
+    if (name === '') {
+      window.alert('Masukan nama alternatif');
+      return;
+    }
+
     // Push criteria with parameter
     /* Parameter | Value
      *    < 20 = 1
@@ -31,7 +36,14 @@ class Alternative extends React.Component {
      *    > 80 = 5
     */
     const parameterVal = [];
+    let isValid = true;
     criteriaVal.forEach((c) => {
+
+      if (c > 100 || c < 1) {
+        window.alert('Masukan nilai kriteria antara 0 - 100');
+        isValid = false;
+      }
+
       let p = 0;
       if (c < 20) { p = 1 }
       if (c >= 20 && c <= 39) { p = 2 }
@@ -40,6 +52,11 @@ class Alternative extends React.Component {
       if (c >= 80) { p = 5 }
       parameterVal.push(p);
     });
+
+    if (!isValid) {
+      window.alert('Masukan nilai kriteria antara 1 - 100');
+      return;
+    }
 
     alternative.push({
       name,
@@ -114,6 +131,8 @@ class Alternative extends React.Component {
             <small>C{i + 1} - { d.name }</small><br />
             <small>bobot : { d.bobot }</small>
             <input
+              min="0"
+              max="100"
               type="number"
               onChange={(e) => this.handleCriteriaVal(e, i)}
               placeholder={ d.name }
@@ -173,7 +192,7 @@ class Alternative extends React.Component {
                 <div className="row">
                   <div className="col">
                     <div className="form-group">
-                      <label>Alternative</label>
+                      <label>Alternatif</label>
                       <input
                         name="name"
                         value={name}
@@ -186,7 +205,7 @@ class Alternative extends React.Component {
                 </div>
                 <div className="row">
                   <div className="col">
-                    Nilai Kriteria 
+                    Nilai Kriteria (1 - 100)
                   </div>
                 </div>
                 <div className="row">
