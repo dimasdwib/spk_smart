@@ -13,7 +13,7 @@ class Param extends React.Component {
     const colThead = [];
     criteria.forEach((d, i) => {
       // push table head
-      colThead.push(<th key={i}>C{i + 1}</th>)
+      colThead.push(<th key={i}>C{i + 1}</th>);
     });
 
     const rowData = [];

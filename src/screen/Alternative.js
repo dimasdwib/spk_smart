@@ -38,9 +38,7 @@ class Alternative extends React.Component {
     const parameterVal = [];
     let isValid = true;
     criteriaVal.forEach((c) => {
-
-      if (c > 100 || c < 1) {
-        window.alert('Masukan nilai kriteria antara 0 - 100');
+      if (!c || c > 100 || c < 1 || c === '') {
         isValid = false;
       }
 
@@ -53,7 +51,7 @@ class Alternative extends React.Component {
       parameterVal.push(p);
     });
 
-    if (!isValid) {
+    if (!isValid || criteriaVal.length === 0) {
       window.alert('Masukan nilai kriteria antara 1 - 100');
       return;
     }
@@ -137,7 +135,7 @@ class Alternative extends React.Component {
               onChange={(e) => this.handleCriteriaVal(e, i)}
               placeholder={ d.name }
               className="form-control form-control-sm"
-              value={criteriaVal[i] || 0}
+              value={criteriaVal[i] || ''}
             />
           </div>
         </div>
